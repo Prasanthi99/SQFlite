@@ -4,7 +4,6 @@ import 'package:sqflite/src/database.dart';
 import 'package:sqflite/src/sql_builder.dart';
 import 'package:sqflite/src/transaction.dart';
 import 'package:sqflite/src/utils.dart';
-import 'package:sqflite/sqflite.dart';
 
 abstract class SqfliteBatch implements Batch {
   final List<Map<String, dynamic>> operations = [];
@@ -115,9 +114,8 @@ class SqfliteDatabaseBatch extends SqfliteBatch {
 }
 
 class SqfliteTransactionBatch extends SqfliteBatch {
-  final SqfliteTransaction transaction;
-
   SqfliteTransactionBatch(this.transaction);
+  final SqfliteTransaction transaction;
 
   @override
   Future<List> commit({bool exclusive, bool noResult}) {
